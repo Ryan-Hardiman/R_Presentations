@@ -1,0 +1,210 @@
+---
+#| echo = true
+title: "Solve Puzzles FastR"
+author: Ryan Hardiman
+format: 
+  revealjs:
+    footer: "Solving Puzzles FastR"
+    transition: slide
+    transition-speed: fast
+    theme: blood
+editor: visual
+---
+
+```{r setup}
+library(tidyverse)
+library(memoise)
+library(knitr)
+library(kableExtra)
+```
+
+## Overview
+
+- AoC questions [Spoilers]
+
+- Participation
+
+- 🔧 Tools and Techniques
+
+- 📖 Further Reading
+
+- ❓ Questions
+
+## Disclaimers
+
+Advent of Code is a registered trademark in the United States. The design elements, language, styles, and concept of Advent of Code are all the sole property of Advent of Code and may not be replicated or used by any other person or entity without express written consent of Advent of Code. Copyright 2015-2024 Advent of Code. All rights reserved.
+
+You may link to or reference puzzles from Advent of Code in discussions, classes, source code, printed material, etc., even in commercial contexts. You will nod if you acknowledge to reading the text. Advent of Code does not claim ownership or copyright over your solution implementation.
+
+## Well done for nodding!
+
+::::::::: r-stack
+::: {.fragment .fade-in-then-out}
+*...You may link to or reference puzzles from Advent of Code in discussions, classes, source code, printed material, etc., even in commercial contexts. You will nod if you have read this text. Advent of Code does not claim ownership or copyright over your solution implementation.*
+:::
+
+::: {.fragment .fade-in-then-out}
+*...You may link to or reference puzzles from Advent of Code in discussions, classes, source code, printed material, etc., even in commercial contexts. [You will nod if you have read this text]{style="color:green;"}. Advent of Code does not claim ownership or copyright over your solution implementation.*
+:::
+
+:::::: r-stack
+::::: {.fragment .fade-in style="text-align: bottom-left;"}
+Tip No.1: Read the text!
+
+:::: {.fragment .fade-in style="text-align: bottom-left;"}
+Skim reading often comes at a cost!
+
+::: {.fragment .fade-in style="text-align: bottom-left;"}
+And so does answering the wrong question.
+:::
+::::
+:::::
+::::::
+:::::::::
+
+## Grids! Get used to them.
+
+Say you are given this grid:
+
+:::::: r-stack
+::::: {.fragment .fade-in-then-out}
+<div style="text-align: center; font-size: 1.5em; font-family: monospace; font-weight: bold;">
+<pre style="white-space: pre; line-height: 2em;letter-spacing: 1.5em;">
+.|...\.... 
+|.-.\..... 
+.....|-... 
+........|. 
+.......... 
+.........\ 
+..../.\\.. 
+.-.-/..|.. 
+.|....-|.\ 
+..//.|.... 
+</pre>
+</div>
+::::
+
+
+
+:::: {.fragment .fade-in}
+<div style="text-align: center; font-size: 1.5em; font-family: monospace; font-weight: bold;">
+<pre style="white-space: pre; line-height: 2em;letter-spacing: 1.5em;">
+
+<span style="color:orange;font-weight: bold;font-size: 1em; ">.</span>|...\.... 
+|.-.\..... 
+.....|-... 
+........|. 
+.......... 
+.........\ 
+..../.\\.. 
+.-.-/..|.. 
+.|....-|.\ 
+..//.|.... 
+</pre>
+</div>
+
+
+::::
+
+:::: {.fragment .fade-in}
+<div style="text-align: center; font-size: 1.5em; font-family: monospace; font-weight: bold;">
+<pre style="white-space: pre; line-height: 2em;letter-spacing: 1.5em;">
+
+<span style="color:orange;font-weight: bold;font-size: 1em; ">.|</span>...\.... 
+|.-.\..... 
+.....|-... 
+........|. 
+.......... 
+.........\ 
+..../.\\.. 
+.-.-/..|.. 
+.|....-|.\ 
+..//.|.... 
+</pre>
+</div>
+
+
+::::
+
+:::: {.fragment .fade-in}
+<div style="text-align: center; font-size: 1.5em; font-family: monospace; font-weight: bold;">
+<pre style="white-space: pre; line-height: 2em;letter-spacing: 1.5em;">
+
+<span style="color:orange;font-weight: bold;font-size: 1em; ">.|</span>...\.... 
+|<span style="color:orange;font-weight: bold;font-size: 1em; ">.</span>-.\..... 
+.<span style="color:orange;font-weight: bold;font-size: 1em; ">.</span>...|-... 
+.<span style="color:orange;font-weight: bold;font-size: 1em; ">.</span>......|. 
+.<span style="color:orange;font-weight: bold;font-size: 1em; ">.</span>........ 
+.<span style="color:orange;font-weight: bold;font-size: 1em; ">.</span>.......\ 
+.<span style="color:orange;font-weight: bold;font-size: 1em; ">.</span>../.\\.. 
+.<span style="color:orange;font-weight: bold;font-size: 1em; ">-</span>.-/..|.. 
+.|....-|.\ 
+..//.|.... 
+</pre>
+</div>
+
+
+::::
+
+:::: {.fragment .fade-in}
+<div style="text-align: center; font-size: 1.5em; font-family: monospace; font-weight: bold;">
+<pre style="white-space: pre; line-height: 2em;letter-spacing: 1.5em;">
+
+<span style="color:orange;font-weight: bold;font-size: 1em; ">.|</span>...\.... 
+|<span style="color:orange;font-weight: bold;font-size: 1em; ">.</span>-.\..... 
+.<span style="color:orange;font-weight: bold;font-size: 1em; ">.</span>...|-... 
+.<span style="color:orange;font-weight: bold;font-size: 1em; ">.</span>......|. 
+.<span style="color:orange;font-weight: bold;font-size: 1em; ">.</span>........ 
+.<span style="color:orange;font-weight: bold;font-size: 1em; ">.</span>.......\ 
+.<span style="color:orange;font-weight: bold;font-size: 1em; ">.</span>../.\\.. 
+<span style="color:orange;font-weight: bold;font-size: 1em; ">.-.-/</span>..|.. 
+.|....-|.\ 
+..//.|.... 
+</pre>
+</div>
+
+
+::::
+
+::::::
+
+
+## Trees
+
+How do you contain expanding 
+
+## Trees - 2024 day 14
+
+- 100x100 grid. 
+- Lots of dots moving about.
+- Each dot moves a consistent, unique amount each second.
+- Dots "teleport" when they reach the border.
+
+Q: At what time does a tree exist?
+
+## Trees (Sub-Questions)
+Lets first ask some easier questions.
+
+:::::: r-stack
+::::: {.fragment .fade-in style="text-align: bottom"}
+🌳 What does a tree look like
+
+:::: {.fragment .fade-in style="text-align: bottom"}
+🕒 How can we know when it happens
+
+::::
+:::::
+::::::
+
+
+##
+
+
+
+## Practice and Participate
+
+Just like sudoku, solving any puzzle becomes easier with experience. 
+
+AoC has 500 (250) puzzles already created and with solutions available online. 
+
+See how far you can get in 1 month 
