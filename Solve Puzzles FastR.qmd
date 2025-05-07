@@ -10,44 +10,61 @@ format:
 editor: visual
 ---
 
-{r setup}
+```{r setup}
 library(tidyverse)
 library(memoise)
 library(knitr)
 library(kableExtra)
+```
 
-Overview
+## Overview
 
-AoC questions [Spoilers]
+-   AoC questions \[Spoilers\]
 
-Participation
+-   Participation
 
-🔧 Tools and Techniques
+-   🔧 Tools and Techniques
 
-📖 Further Reading
+-   📖 Further Reading
 
-❓ Questions
+-   ❓ Questions
 
-Behind the Puzzles: The Fine Print
+## Behind the Puzzles: The Fine Print
 
 Advent of Code is a registered trademark in the United States. The design elements, language, styles, and concept of Advent of Code are all the sole property of Advent of Code and may not be replicated or used by any other person or entity without express written consent of Advent of Code. Copyright 2015-2024 Advent of Code. All rights reserved.
 
 You may link to or reference puzzles from Advent of Code in discussions, classes, source code, printed material, etc., even in commercial contexts. You will nod if you acknowledge to reading the text. Advent of Code does not claim ownership or copyright over your solution implementation.
 
-Now That We're All Legal...
+## Now That We're All Legal...
 
-...You may link to or reference puzzles from Advent of Code in discussions, classes, source code, printed material, etc., even in commercial contexts. You will nod if you have read this text. Advent of Code does not claim ownership or copyright over your solution implementation.
+:::::::: r-stack
+::: {.fragment .fade-in-then-out}
+*...You may link to or reference puzzles from Advent of Code in discussions, classes, source code, printed material, etc., even in commercial contexts. [You will nod if you have read this text]{style="color:green;"}. Advent of Code does not claim ownership or copyright over your solution implementation.*
+:::
 
+:::::: r-stack
+::::: {.fragment .fade-in style="text-align: bottom-left;"}
 Tip #1: Always read the fine print.
 
+:::: {.fragment .fade-in style="text-align: bottom-left;"}
 Missed details often lead to missed points.
 
+::: {.fragment .fade-in style="text-align: bottom-left;"}
 And sometimes... to solving the wrong problem.
+:::
+::::
+:::::
+::::::
+::::::::
 
-Grids! Get used to them.
+## Grids! Get used to them.
 
 Say you are given this grid:
 
+::::::::::::: r-stack
+:::: {.fragment .fade-in-then-out}
+::: {style="text-align: center; font-size: 1.5em; font-family: monospace; font-weight: bold;"}
+```{=html}
 <pre style="white-space: pre; line-height: 2em;letter-spacing: 1.5em;">
 .|...\.... 
 |.-.\..... 
@@ -60,7 +77,13 @@ Say you are given this grid:
 .|....-|.\ 
 ..//.|.... 
 </pre>
+```
+:::
+::::
 
+:::: {.fragment .fade-in}
+::: {style="text-align: center; font-size: 1.5em; font-family: monospace; font-weight: bold;"}
+```{=html}
 <pre style="white-space: pre; line-height: 2em;letter-spacing: 1.5em;">
 
 <span style="color:orange;font-weight: bold;font-size: 1em; ">.</span>|...\.... 
@@ -74,7 +97,13 @@ Say you are given this grid:
 .|....-|.\ 
 ..//.|.... 
 </pre>
+```
+:::
+::::
 
+:::: {.fragment .fade-in}
+::: {style="text-align: center; font-size: 1.5em; font-family: monospace; font-weight: bold;"}
+```{=html}
 <pre style="white-space: pre; line-height: 2em;letter-spacing: 1.5em;">
 
 <span style="color:orange;font-weight: bold;font-size: 1em; ">.|</span>...\.... 
@@ -88,7 +117,13 @@ Say you are given this grid:
 .|....-|.\ 
 ..//.|.... 
 </pre>
+```
+:::
+::::
 
+:::: {.fragment .fade-in}
+::: {style="text-align: center; font-size: 1.5em; font-family: monospace; font-weight: bold;"}
+```{=html}
 <pre style="white-space: pre; line-height: 2em;letter-spacing: 1.5em;">
 
 <span style="color:orange;font-weight: bold;font-size: 1em; ">.|</span>...\.... 
@@ -102,7 +137,13 @@ Say you are given this grid:
 .|....-|.\ 
 ..//.|.... 
 </pre>
+```
+:::
+::::
 
+:::: {.fragment .fade-in}
+::: {style="text-align: center; font-size: 1.5em; font-family: monospace; font-weight: bold;"}
+```{=html}
 <pre style="white-space: pre; line-height: 2em;letter-spacing: 1.5em;">
 
 <span style="color:orange;font-weight: bold;font-size: 1em; ">.|</span>...\.... 
@@ -116,28 +157,37 @@ Say you are given this grid:
 .|....-|.\ 
 ..//.|.... 
 </pre>
+```
+:::
+::::
+:::::::::::::
 
-Trees - 2024 day 14
+## Trees - 2024 day 14
 
-100x100 grid.
-
-Lots of dots moving about.
-
-Each dot moves a consistent, unique amount each second.
-
-Dots "teleport" when they reach the border.
+-   100x100 grid.
+-   Lots of dots moving about.
+-   Each dot moves a consistent, unique amount each second.
+-   Dots "teleport" when they reach the border.
 
 Q: At what time does a tree exist?
 
-Trees (Sub-Questions)
+## Trees (Sub-Questions)
 
 Lets first ask some easier questions.
 
+::::: r-stack
+:::: {.fragment .fade-in style="text-align: bottom"}
 🌳 What does a tree look like
 
+::: {.fragment .fade-in style="text-align: bottom"}
 🕒 How can we know when it happens
+:::
+::::
+:::::
 
-Practice Makes Puzzling Easier
+## Memoise Memorise Mesmarise
+
+## Practice Makes Puzzling Easier
 
 The more puzzles you solve, the sharper your skills become
 
