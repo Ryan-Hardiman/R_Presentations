@@ -1,5 +1,4 @@
 ---
-#| echo = true
 title: "Solve Puzzles FastR"
 author: Ryan Hardiman
 format: 
@@ -11,64 +10,44 @@ format:
 editor: visual
 ---
 
-```{r setup}
+{r setup}
 library(tidyverse)
 library(memoise)
 library(knitr)
 library(kableExtra)
-```
 
-## Overview
+Overview
 
-- AoC questions [Spoilers]
+AoC questions [Spoilers]
 
-- Participation
+Participation
 
-- 🔧 Tools and Techniques
+🔧 Tools and Techniques
 
-- 📖 Further Reading
+📖 Further Reading
 
-- ❓ Questions
+❓ Questions
 
-## Disclaimers
+Behind the Puzzles: The Fine Print
 
 Advent of Code is a registered trademark in the United States. The design elements, language, styles, and concept of Advent of Code are all the sole property of Advent of Code and may not be replicated or used by any other person or entity without express written consent of Advent of Code. Copyright 2015-2024 Advent of Code. All rights reserved.
 
 You may link to or reference puzzles from Advent of Code in discussions, classes, source code, printed material, etc., even in commercial contexts. You will nod if you acknowledge to reading the text. Advent of Code does not claim ownership or copyright over your solution implementation.
 
-## Well done for nodding!
+Now That We're All Legal...
 
-::::::::: r-stack
-::: {.fragment .fade-in-then-out}
-*...You may link to or reference puzzles from Advent of Code in discussions, classes, source code, printed material, etc., even in commercial contexts. You will nod if you have read this text. Advent of Code does not claim ownership or copyright over your solution implementation.*
-:::
+...You may link to or reference puzzles from Advent of Code in discussions, classes, source code, printed material, etc., even in commercial contexts. You will nod if you have read this text. Advent of Code does not claim ownership or copyright over your solution implementation.
 
-::: {.fragment .fade-in-then-out}
-*...You may link to or reference puzzles from Advent of Code in discussions, classes, source code, printed material, etc., even in commercial contexts. [You will nod if you have read this text]{style="color:green;"}. Advent of Code does not claim ownership or copyright over your solution implementation.*
-:::
+Tip #1: Always read the fine print.
 
-:::::: r-stack
-::::: {.fragment .fade-in style="text-align: bottom-left;"}
-Tip No.1: Read the text!
+Missed details often lead to missed points.
 
-:::: {.fragment .fade-in style="text-align: bottom-left;"}
-Skim reading often comes at a cost!
+And sometimes... to solving the wrong problem.
 
-::: {.fragment .fade-in style="text-align: bottom-left;"}
-And so does answering the wrong question.
-:::
-::::
-:::::
-::::::
-:::::::::
-
-## Grids! Get used to them.
+Grids! Get used to them.
 
 Say you are given this grid:
 
-:::::: r-stack
-::::: {.fragment .fade-in-then-out}
-<div style="text-align: center; font-size: 1.5em; font-family: monospace; font-weight: bold;">
 <pre style="white-space: pre; line-height: 2em;letter-spacing: 1.5em;">
 .|...\.... 
 |.-.\..... 
@@ -81,13 +60,7 @@ Say you are given this grid:
 .|....-|.\ 
 ..//.|.... 
 </pre>
-</div>
-::::
 
-
-
-:::: {.fragment .fade-in}
-<div style="text-align: center; font-size: 1.5em; font-family: monospace; font-weight: bold;">
 <pre style="white-space: pre; line-height: 2em;letter-spacing: 1.5em;">
 
 <span style="color:orange;font-weight: bold;font-size: 1em; ">.</span>|...\.... 
@@ -101,13 +74,7 @@ Say you are given this grid:
 .|....-|.\ 
 ..//.|.... 
 </pre>
-</div>
 
-
-::::
-
-:::: {.fragment .fade-in}
-<div style="text-align: center; font-size: 1.5em; font-family: monospace; font-weight: bold;">
 <pre style="white-space: pre; line-height: 2em;letter-spacing: 1.5em;">
 
 <span style="color:orange;font-weight: bold;font-size: 1em; ">.|</span>...\.... 
@@ -121,13 +88,7 @@ Say you are given this grid:
 .|....-|.\ 
 ..//.|.... 
 </pre>
-</div>
 
-
-::::
-
-:::: {.fragment .fade-in}
-<div style="text-align: center; font-size: 1.5em; font-family: monospace; font-weight: bold;">
 <pre style="white-space: pre; line-height: 2em;letter-spacing: 1.5em;">
 
 <span style="color:orange;font-weight: bold;font-size: 1em; ">.|</span>...\.... 
@@ -141,13 +102,7 @@ Say you are given this grid:
 .|....-|.\ 
 ..//.|.... 
 </pre>
-</div>
 
-
-::::
-
-:::: {.fragment .fade-in}
-<div style="text-align: center; font-size: 1.5em; font-family: monospace; font-weight: bold;">
 <pre style="white-space: pre; line-height: 2em;letter-spacing: 1.5em;">
 
 <span style="color:orange;font-weight: bold;font-size: 1em; ">.|</span>...\.... 
@@ -161,50 +116,33 @@ Say you are given this grid:
 .|....-|.\ 
 ..//.|.... 
 </pre>
-</div>
 
+Trees - 2024 day 14
 
-::::
+100x100 grid.
 
-::::::
+Lots of dots moving about.
 
+Each dot moves a consistent, unique amount each second.
 
-## Trees
-
-How do you contain expanding 
-
-## Trees - 2024 day 14
-
-- 100x100 grid. 
-- Lots of dots moving about.
-- Each dot moves a consistent, unique amount each second.
-- Dots "teleport" when they reach the border.
+Dots "teleport" when they reach the border.
 
 Q: At what time does a tree exist?
 
-## Trees (Sub-Questions)
+Trees (Sub-Questions)
+
 Lets first ask some easier questions.
 
-:::::: r-stack
-::::: {.fragment .fade-in style="text-align: bottom"}
 🌳 What does a tree look like
 
-:::: {.fragment .fade-in style="text-align: bottom"}
 🕒 How can we know when it happens
 
-::::
-:::::
-::::::
+Practice Makes Puzzling Easier
 
+The more puzzles you solve, the sharper your skills become
 
-##
+With over 500 Advent of Code challenges already available (250 days, two parts each), there's no shortage of material to learn from.
 
+Set yourself a challenge: how far can you get in just one month?
 
-
-## Practice and Participate
-
-Just like sudoku, solving any puzzle becomes easier with experience. 
-
-AoC has 500 (250) puzzles already created and with solutions available online. 
-
-See how far you can get in 1 month 
+https://adventofcode.com/
