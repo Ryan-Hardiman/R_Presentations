@@ -1,0 +1,18 @@
+.grid {
+  text-align: center;
+  font-size: 1.5em;
+  font-family: monospace;
+  font-weight: bold;
+}
+
+.gridpre {
+  white-space: pre;
+  line-height: 2em;
+  letter-spacing: 1.5em;
+}
+
+.grid_highlight {
+  color:orange;
+  font-weight: bold;
+  font-size: 1em; 
+}

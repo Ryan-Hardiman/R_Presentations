@@ -7,6 +7,7 @@ format:
     transition: slide
     transition-speed: fast
     theme: blood
+    css: styles.css
 editor: visual
 ---
 
@@ -14,7 +15,33 @@ editor: visual
 library(tidyverse)
 library(memoise)
 library(knitr)
-library(kableExtra)
+# library(kableExtra)
+library(glue)
+```
+
+
+```{r}
+#| echo: false
+
+#Function to draw grids, includes a basic character replacement to facilitate
+#highlights etc.
+mk_grid <- function(grid_string, .left = "{", .right = "}", class = "grid_highlight") {
+  header <- r"(<div class="grid">
+<pre class="gridpre">)"
+  footer <- r"(</pre>
+</div>)"
+  
+  highlight_header <- glue::glue('<span class="{class}">')
+  highligh_footer <- glue::glue("</span>")
+  
+  grid_string <- grid_string |>
+    stringr::str_replace_all(pattern = stringr::str_escape(.left),
+                             replacement = highlight_header) |>
+    stringr::str_replace_all(pattern = stringr::str_escape(.right),
+                             replacement = highligh_footer)
+  
+  cat(paste0(header, grid_string, footer, collapse = "\n"))
+}
 ```
 
 ## Overview
@@ -31,9 +58,14 @@ library(kableExtra)
 
 ## Behind the Puzzles: The Fine Print
 
-Advent of Code is a registered trademark in the United States. The design elements, language, styles, and concept of Advent of Code are all the sole property of Advent of Code and may not be replicated or used by any other person or entity without express written consent of Advent of Code. Copyright 2015-2024 Advent of Code. All rights reserved.
+Advent of Code is a registered trademark in the United States.
+The design elements, language, styles, and concept of Advent of Code are all the sole property of Advent of Code and may not be replicated or used by any other person or entity without express written consent of Advent of Code.
+Copyright 2015-2024 Advent of Code.
+All rights reserved.
 
-You may link to or reference puzzles from Advent of Code in discussions, classes, source code, printed material, etc., even in commercial contexts. You will nod if you acknowledge to reading the text. Advent of Code does not claim ownership or copyright over your solution implementation.
+You may link to or reference puzzles from Advent of Code in discussions, classes, source code, printed material, etc., even in commercial contexts.
+You will nod if you acknowledge to reading the text.
+Advent of Code does not claim ownership or copyright over your solution implementation.
 
 ## Now That We're All Legal...
 
@@ -50,12 +82,30 @@ Tip #1: Always read the fine print.
 Missed details often lead to missed points.
 
 ::: {.fragment .fade-in style="text-align: bottom-left;"}
-And sometimes... to solving the wrong problem.
+And sometimes...
+to solving the wrong problem.
 :::
 ::::
 :::::
 ::::::
 ::::::::
+
+
+## `mk_grid` example
+
+```{r results="asis"}
+mk_grid(r"({.|}...\.... 
+|{.}-.\..... 
+.{.}...|-... 
+.{.}......|. 
+.{.}........ 
+.{.}.......\ 
+..../.\\.. 
+.-.-/..|.. 
+.|....-|.\ 
+..//.|....)")
+```
+
 
 ## Grids! Get used to them.
 
