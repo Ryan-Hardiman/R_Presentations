@@ -90,23 +90,6 @@ to solving the wrong problem.
 ::::::
 ::::::::
 
-
-## `mk_grid` example
-
-```{r results="asis"}
-mk_grid(r"({.|}...\.... 
-|{.}-.\..... 
-.{.}...|-... 
-.{.}......|. 
-.{.}........ 
-.{.}.......\ 
-..../.\\.. 
-.-.-/..|.. 
-.|....-|.\ 
-..//.|....)")
-```
-
-
 ## Grids! Get used to them.
 
 Say you are given this grid:
@@ -114,9 +97,8 @@ Say you are given this grid:
 ::::::::::::: r-stack
 :::: {.fragment .fade-in-then-out}
 ::: {style="text-align: center; font-size: 1.5em; font-family: monospace; font-weight: bold;"}
-```{=html}
-<pre style="white-space: pre; line-height: 2em;letter-spacing: 1.5em;">
-.|...\.... 
+```{r results="asis"}
+mk_grid(r"(.|...\.... 
 |.-.\..... 
 .....|-... 
 ........|. 
@@ -125,18 +107,16 @@ Say you are given this grid:
 ..../.\\.. 
 .-.-/..|.. 
 .|....-|.\ 
-..//.|.... 
-</pre>
+..//.|....)")
 ```
 :::
 ::::
 
-:::: {.fragment .fade-in}
+:::: {.fragment .fade-in-then-out}
 ::: {style="text-align: center; font-size: 1.5em; font-family: monospace; font-weight: bold;"}
-```{=html}
-<pre style="white-space: pre; line-height: 2em;letter-spacing: 1.5em;">
 
-<span style="color:orange;font-weight: bold;font-size: 1em; ">.</span>|...\.... 
+```{r results="asis"}
+mk_grid(r"({.|}...\.... 
 |.-.\..... 
 .....|-... 
 ........|. 
@@ -145,68 +125,94 @@ Say you are given this grid:
 ..../.\\.. 
 .-.-/..|.. 
 .|....-|.\ 
-..//.|.... 
-</pre>
+..//.|....)")
 ```
 :::
 ::::
 
-:::: {.fragment .fade-in}
+:::: {.fragment .fade-in-then-out}
 ::: {style="text-align: center; font-size: 1.5em; font-family: monospace; font-weight: bold;"}
-```{=html}
-<pre style="white-space: pre; line-height: 2em;letter-spacing: 1.5em;">
-
-<span style="color:orange;font-weight: bold;font-size: 1em; ">.|</span>...\.... 
-|.-.\..... 
-.....|-... 
-........|. 
-.......... 
-.........\ 
-..../.\\.. 
-.-.-/..|.. 
+```{r results="asis"}
+mk_grid(r"({.|}...\.... 
+|{.}-.\..... 
+.{.}...|-... 
+.{.}......|. 
+.{.}........ 
+.{.}.......\ 
+.{.}../.\\.. 
+.{-}.-/..|.. 
 .|....-|.\ 
-..//.|.... 
-</pre>
+..//.|....)")
 ```
 :::
 ::::
 
-:::: {.fragment .fade-in}
-::: {style="text-align: center; font-size: 1.5em; font-family: monospace; font-weight: bold;"}
-```{=html}
-<pre style="white-space: pre; line-height: 2em;letter-spacing: 1.5em;">
 
-<span style="color:orange;font-weight: bold;font-size: 1em; ">.|</span>...\.... 
-|<span style="color:orange;font-weight: bold;font-size: 1em; ">.</span>-.\..... 
-.<span style="color:orange;font-weight: bold;font-size: 1em; ">.</span>...|-... 
-.<span style="color:orange;font-weight: bold;font-size: 1em; ">.</span>......|. 
-.<span style="color:orange;font-weight: bold;font-size: 1em; ">.</span>........ 
-.<span style="color:orange;font-weight: bold;font-size: 1em; ">.</span>.......\ 
-.<span style="color:orange;font-weight: bold;font-size: 1em; ">.</span>../.\\.. 
-.<span style="color:orange;font-weight: bold;font-size: 1em; ">-</span>.-/..|.. 
+:::: {.fragment .fade-in-then-out}
+::: {style="text-align: center; font-size: 1.5em; font-family: monospace; font-weight: bold;"}
+```{r results="asis"}
+mk_grid(r"({.|}...\.... 
+|{.}-.\..... 
+.{.}...|-... 
+.{.}......|. 
+.{.}........ 
+.{.}.......\ 
+.{.}../.\\.. 
+{.-.-/}..|.. 
 .|....-|.\ 
-..//.|.... 
-</pre>
+..//.|....)")
 ```
 :::
 ::::
 
-:::: {.fragment .fade-in}
-::: {style="text-align: center; font-size: 1.5em; font-family: monospace; font-weight: bold;"}
-```{=html}
-<pre style="white-space: pre; line-height: 2em;letter-spacing: 1.5em;">
 
-<span style="color:orange;font-weight: bold;font-size: 1em; ">.|</span>...\.... 
-|<span style="color:orange;font-weight: bold;font-size: 1em; ">.</span>-.\..... 
-.<span style="color:orange;font-weight: bold;font-size: 1em; ">.</span>...|-... 
-.<span style="color:orange;font-weight: bold;font-size: 1em; ">.</span>......|. 
-.<span style="color:orange;font-weight: bold;font-size: 1em; ">.</span>........ 
-.<span style="color:orange;font-weight: bold;font-size: 1em; ">.</span>.......\ 
-.<span style="color:orange;font-weight: bold;font-size: 1em; ">.</span>../.\\.. 
-<span style="color:orange;font-weight: bold;font-size: 1em; ">.-.-/</span>..|.. 
+:::: {.fragment .fade-in-then-out}
+::: {style="text-align: center; font-size: 1.5em; font-family: monospace; font-weight: bold;"}
+```{r results="asis"}
+mk_grid(r"({.|}...\.... 
+|{.}-.\..... 
+.{.}...|-... 
+.{.}......|. 
+.{.}........ 
+.{.}.......\ 
+.{.}..{/}.\\.. 
+{.-.-/}..|.. 
 .|....-|.\ 
-..//.|.... 
-</pre>
+..//.|....)")
+```
+:::
+::::
+
+:::: {.fragment .fade-in-then-out}
+::: {style="text-align: center; font-size: 1.5em; font-family: monospace; font-weight: bold;"}
+```{r results="asis"}
+mk_grid(r"({.|}...\.... 
+|{.}-.\..... 
+.{.}...|-... 
+.{.}......|. 
+.{.}........ 
+.{.}.......\ 
+.{.}..{/.\}\.. 
+{.-.-/}..|.. 
+.|....-|.\ 
+..//.|....)")
+```
+:::
+::::
+
+:::: {.fragment .fade-in-then-out}
+::: {style="text-align: center; font-size: 1.5em; font-family: monospace; font-weight: bold;"}
+```{r results="asis"}
+mk_grid(r"({.|...\}.... 
+|{.}-.\{.}.... 
+.{.}...{|-...} 
+.{.}...{..}.|. 
+.{.}...{..}... 
+.{.}...{..}..\ 
+.{.}..{/.\\}.. 
+{.-.-/..|}.. 
+.{|....-|}.\ 
+.{.}//.{|}.{.}..)")
 ```
 :::
 ::::
